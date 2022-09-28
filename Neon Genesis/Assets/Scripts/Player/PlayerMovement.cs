@@ -75,9 +75,8 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         ControlDrag();
         ControlSpeed();
-
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
-        {
+        
+        if (Input.GetKeyDown(jumpKey) && isGrounded) {
             Jump();
         }
 
