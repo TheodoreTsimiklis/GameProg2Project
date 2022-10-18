@@ -8,8 +8,8 @@ public class movement : MonoBehaviour
     public Rigidbody rb;
     Vector3 rotationVector;
     bool isHeld = false;
-    float speed = 0.2f;
-    float thrust = 12f;
+    float speed = 0.02f;
+    float thrust = 6f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class movement : MonoBehaviour
     {
         //jump
        if(Input.GetKeyDown(KeyCode.Space)){
-        rb.AddForce(transform.up * thrust);
+        rb.velocity = transform.up * thrust;
        } 
         
         //walk forwards
@@ -30,8 +30,17 @@ public class movement : MonoBehaviour
         transform.Translate(Vector3.forward * speed, Camera.main.transform);
        } 
 
-       if(Input.GetKeyUp(KeyCode.UpArrow)){
-        VerticalStop();
+       if(Input.GetKeyDown(KeyCode.Space)){
+        rb.AddForce(transform.up * thrust);
+       } 
+        
+        //sprint
+       if(Input.GetKey(KeyCode.LeftShift)){
+        speed = 0.05f;
+       } 
+
+       if(Input.GetKeyUp(KeyCode.LeftShift)){
+        speed = 0.02f;
        } 
 
         //walk backwards
@@ -80,6 +89,14 @@ public class movement : MonoBehaviour
             Debug.Log("turn");
             rotationVector = new Vector3(Input.GetAxis("Mouse X"), 0);
         }
+
+
+        //if player falls put them back up
+
+
+
+
+
 }
         void SideStop(){
            transform.Translate(Vector3.left * 0, Camera.main.transform);
