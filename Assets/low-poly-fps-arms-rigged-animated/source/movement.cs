@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class movement : MonoBehaviour
     Vector3 rotationVector;
     bool isHeld = false;
     float speed = 0.02f;
-    float thrust = 6f;
+    float thrust = 8f;
+    bool isGrounded = true;
+    public float sensitivity = 10f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +24,16 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //jump
-       if(Input.GetKeyDown(KeyCode.Space)){
+       if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
         rb.velocity = transform.up * thrust;
+        isGrounded = false;
+         
        } 
         
         //walk forwards
-       if(Input.GetKey(KeyCode.UpArrow)){
+       if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
         transform.Translate(Vector3.forward * speed, Camera.main.transform);
        } 
 
@@ -37,39 +44,41 @@ public class movement : MonoBehaviour
         //sprint
        if(Input.GetKey(KeyCode.LeftShift)){
         speed = 0.05f;
+        Camera.main.fieldOfView = 45;
        } 
 
        if(Input.GetKeyUp(KeyCode.LeftShift)){
         speed = 0.02f;
+        Camera.main.fieldOfView = 60;
        } 
 
         //walk backwards
-       if(Input.GetKey(KeyCode.DownArrow)){
+       if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)){
         transform.Translate(Vector3.forward * -speed, Camera.main.transform);
        } 
        
         //stop
-       if(Input.GetKeyUp(KeyCode.UpArrow)){
+       if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
         VerticalStop();
        } 
 
        //walk Left
-       if(Input.GetKey(KeyCode.LeftArrow)){
+       if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
          transform.Translate(Vector3.left * speed, Camera.main.transform);
        } 
        
         //stop
-       if(Input.GetKeyUp(KeyCode.LeftArrow)){
+       if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
          SideStop();
        } 
 
        //walk right
-       if(Input.GetKey(KeyCode.RightArrow)){
+       if(Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D)){
          transform.Translate(Vector3.left * -speed, Camera.main.transform);
        } 
        
         //stop
-       if(Input.GetKeyUp(KeyCode.RightArrow)){
+       if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
          SideStop();
        } 
 
@@ -84,18 +93,41 @@ public class movement : MonoBehaviour
             isHeld = false;
        }
 
+       //uncrouch
+       if(Input.GetKey(KeyCode.LeftControl)){
+         rb.transform.localScale = new Vector3(1f, 0.2f, 1f);
+       } 
+       
+        //stop
+       if(Input.GetKeyUp(KeyCode.LeftControl)){
+         rb.transform.localScale = new Vector3(1f, 1f, 1f);
+       } 
+
+
+
+       if(Input.GetKey(KeyCode.Escape)){
+          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       }
+
+/*
        //turn camera
         if(Input.GetAxis("Mouse X") < 0 && Input.GetAxis("Mouse Y") < 91 && Input.GetAxis("Mouse Y") > -91){
             Debug.Log("turn");
             rotationVector = new Vector3(Input.GetAxis("Mouse X"), 0);
         }
+*/
 
+         var c = rb.transform;
+         c.Rotate(0, Input.GetAxis("Mouse X")* sensitivity, 0);
 
-        //if player falls put them back up
+         if(-Input.GetAxis("Mouse Y") > -91 && -Input.GetAxis("Mouse Y") < 91)
+          c.Rotate(-Input.GetAxis("Mouse Y")* sensitivity, 0, 0);
+         c.Rotate(0, 0, -Input.GetAxis("QandE")*90 * Time.deltaTime);
+         if (Input.GetMouseButtonDown(0)){
+             Cursor.lockState = CursorLockMode.Locked;
+          }
 
-
-
-
+      
 
 }
         void SideStop(){
@@ -107,5 +139,8 @@ public class movement : MonoBehaviour
         }
 
         private void OnCollisionEnter(Collision other) {
+          if(other.gameObject.name == "floor"){
+            isGrounded = true;
+          }
         }
 }
