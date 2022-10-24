@@ -6,10 +6,12 @@ public class PlayerAttack : MonoBehaviour
 {
     int movementSpeed = 5;
     Animator[] sword;
+    AudioSource weapon;
     // Start is called before the first frame update
     void Start()
     {
         sword = GetComponentsInChildren<Animator>();
+        weapon = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,11 +26,23 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
             GetComponent<Rigidbody>().AddForce(new Vector3(0,0,-movementSpeed));    
 
-        if (Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("SPACE PRESSED");
-            sword[0].enabled = true;
-            sword[0].Play("swing");
+        if (Input.GetKeyDown(KeyCode.Mouse0)){
+
+           SwordAttack();
+           Debug.Log("hit");
         }
             
     }
+    public void SwordAttack()
+    {
+        //activates the trigger in the animator
+        sword[0].SetTrigger("Hit");
+        if (!weapon.isPlaying)
+        {
+            weapon.Play();
+        } 
+
+    }
 }
+
+    
