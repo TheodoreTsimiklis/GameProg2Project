@@ -1,14 +1,13 @@
 using System;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuButtons : MonoBehaviour
+public class SettingsMenuButtons : MonoBehaviour
 {
     readonly int[][] RESOLUTIONS = new[] { new[] { 1920, 1080 }, new[] { 1600, 900 }, new[] { 1366, 768 }, new[] { 1280, 720 } };
-    readonly string[] INPUT_DEVICES = new[] {"Keyboard + Mouse", "Controller"};
+    readonly string[] INPUT_DEVICES = new[] { "Keyboard + Mouse", "Controller" };
 
     public Texture2D m_Fullscreen;
     public Texture2D m_Windowed;
@@ -25,11 +24,16 @@ public class MenuButtons : MonoBehaviour
     bool m_IsFullscreen;
     float m_CurrentVolume;
 
+    private void Start()
+    {
+        Load();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    
+
     public void QuitGame()
     {
         Application.Quit();

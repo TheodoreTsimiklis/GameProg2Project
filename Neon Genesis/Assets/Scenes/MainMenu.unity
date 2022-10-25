@@ -230,18 +230,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &14925880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +552,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029741845}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -697,7 +685,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: ToggleFullscreen
         m_Mode: 1
         m_Arguments:
@@ -839,7 +827,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 338140804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a0610f27147f544b2feba5a7e504ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 39e61125f0bd5714b8616a1daaea05f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Fullscreen: {fileID: 2800000, guid: 0c6ca0d7df80dd84aac6f5086a2892c0, type: 3}
@@ -1881,7 +1869,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: ResolutionRightButton
         m_Mode: 1
         m_Arguments:
@@ -2332,7 +2320,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: VolumeControl
         m_Mode: 1
         m_Arguments:
@@ -2561,7 +2549,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029741845}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -2962,7 +2950,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: InputRightButton
         m_Mode: 1
         m_Arguments:
@@ -3094,18 +3082,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 338140804}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2029741843}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3117,6 +3093,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 338140804}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1838956800
 MonoBehaviour:
@@ -3374,7 +3362,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: InputLeftButton
         m_Mode: 1
         m_Arguments:
@@ -3839,15 +3827,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2029741843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a0610f27147f544b2feba5a7e504ac, type: 3}
+  m_Script: {fileID: 11500000, guid: fcef4de4adb519d46af3df7b2e2b1411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Fullscreen: {fileID: 0}
-  m_Windowed: {fileID: 0}
-  m_ResolutionText: {fileID: 0}
-  m_InputText: {fileID: 0}
-  m_FullScreenToggle: {fileID: 0}
-  m_VolumeSlider: {fileID: 0}
 --- !u!1 &2060434959
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,7 +4048,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 338140806}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: SettingsMenuButtons, Assembly-CSharp
         m_MethodName: ResolutionLeftButton
         m_Mode: 1
         m_Arguments:
