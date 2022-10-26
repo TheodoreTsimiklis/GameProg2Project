@@ -10,7 +10,7 @@ public class movement : MonoBehaviour
     Vector3 rotationVector;
     bool isHeld = false;
     float speed = 0.02f;
-    float thrust = 8f;
+    float thrust = 10f;
     bool isGrounded = true;
     public float sensitivity = 10f;
 
@@ -25,29 +25,25 @@ public class movement : MonoBehaviour
     void Update()
     {
 
-        //jump
+        //jump (the user should only be able to jump when grounded (isGrounded = true)) 
        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
         rb.velocity = transform.up * thrust;
-        isGrounded = false;
-         
+        isGrounded = false;    
        } 
-        
+
+
         //walk forwards
        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
         transform.Translate(Vector3.forward * speed, Camera.main.transform);
        } 
 
-       if(Input.GetKeyDown(KeyCode.Space)){
-        rb.AddForce(transform.up * thrust);
-       } 
+       
         
-        //sprint
+        //sprint (zoom the FoV when user wants to sprint)
        if(Input.GetKey(KeyCode.LeftShift)){
         speed = 0.05f;
         Camera.main.fieldOfView = 45;
-       } 
-
-       if(Input.GetKeyUp(KeyCode.LeftShift)){
+       }else if(Input.GetKeyUp(KeyCode.LeftShift)){
         speed = 0.02f;
         Camera.main.fieldOfView = 60;
        } 
@@ -55,56 +51,27 @@ public class movement : MonoBehaviour
         //walk backwards
        if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)){
         transform.Translate(Vector3.forward * -speed, Camera.main.transform);
-       } 
-       
-        //stop
-       if(Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)){
-        VerticalStop();
-       } 
+       }
 
        //walk Left
        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
          transform.Translate(Vector3.left * speed, Camera.main.transform);
-       } 
-       
-        //stop
-       if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
-         SideStop();
-       } 
+       }
 
        //walk right
        if(Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D)){
          transform.Translate(Vector3.left * -speed, Camera.main.transform);
-       } 
-       
-        //stop
-       if(Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
-         SideStop();
-       } 
-
-
-        //hold mouse button
-       if(Input.GetMouseButtonDown(0)){
-            isHeld = true;
        }
 
-        //if user lets go of left click the "hold" flag is set to off
-       if(Input.GetMouseButtonUp(0)){
-            isHeld = false;
-       }
-
-       //uncrouch
+       //crouch
        if(Input.GetKey(KeyCode.LeftControl)){
          rb.transform.localScale = new Vector3(1f, 0.2f, 1f);
-       } 
-       
-        //stop
-       if(Input.GetKeyUp(KeyCode.LeftControl)){
+       }else if(Input.GetKeyUp(KeyCode.LeftControl)){
          rb.transform.localScale = new Vector3(1f, 1f, 1f);
        } 
 
 
-
+        //restart level
        if(Input.GetKey(KeyCode.Escape)){
           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        }
@@ -130,14 +97,12 @@ public class movement : MonoBehaviour
       
 
 }
-        void SideStop(){
-           transform.Translate(Vector3.left * 0, Camera.main.transform);
-        }
 
-        void VerticalStop(){ // up down stop
-            transform.Translate(Vector3.forward * 0, Camera.main.transform);
-        }
-
+        /*
+        * makes sure that the user makes contact with the ground.
+        * Once they do, the isGrounded flag is turn to true and
+        * the user is then given the ability to jump again
+        */
         private void OnCollisionEnter(Collision other) {
           if(other.gameObject.name == "floor"){
             isGrounded = true;
