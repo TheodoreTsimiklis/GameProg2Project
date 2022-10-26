@@ -10,7 +10,7 @@ public class movement : MonoBehaviour
     Vector3 rotationVector;
     bool isHeld = false;
     float speed = 0.02f;
-    float thrust = 10f;
+    float jumpingForce = 10f;
     bool isGrounded = true;
     public float sensitivity = 10f;
 
@@ -27,7 +27,7 @@ public class movement : MonoBehaviour
 
         //jump (the user should only be able to jump when grounded (isGrounded = true)) 
        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-        rb.velocity = transform.up * thrust;
+        rb.velocity = transform.up * jumpingForce;
         isGrounded = false;    
        } 
 
@@ -86,14 +86,14 @@ public class movement : MonoBehaviour
 
          var c = rb.transform;
          c.Rotate(0, Input.GetAxis("Mouse X")* sensitivity, 0);
-
+/*
          if(-Input.GetAxis("Mouse Y") > -91 && -Input.GetAxis("Mouse Y") < 91)
           c.Rotate(-Input.GetAxis("Mouse Y")* sensitivity, 0, 0);
          c.Rotate(0, 0, -Input.GetAxis("QandE")*90 * Time.deltaTime);
          if (Input.GetMouseButtonDown(0)){
              Cursor.lockState = CursorLockMode.Locked;
           }
-
+*/
       
 
 }
