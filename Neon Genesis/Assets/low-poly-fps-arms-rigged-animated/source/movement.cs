@@ -13,6 +13,8 @@ public class movement : MonoBehaviour
     float jumpingForce = 10f;
     bool isGrounded = true;
     public float sensitivity = 10f;
+    public float maxYAngle = 80f;
+    private Vector2 currentRotation;
 
 
     // Start is called before the first frame update
@@ -76,24 +78,17 @@ public class movement : MonoBehaviour
           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        }
 
-/*
-       //turn camera
-        if(Input.GetAxis("Mouse X") < 0 && Input.GetAxis("Mouse Y") < 91 && Input.GetAxis("Mouse Y") > -91){
-            Debug.Log("turn");
-            rotationVector = new Vector3(Input.GetAxis("Mouse X"), 0);
-        }
-*/
-
+        //move camera
          var c = rb.transform;
-         c.Rotate(0, Input.GetAxis("Mouse X")* sensitivity, 0);
-/*
-         if(-Input.GetAxis("Mouse Y") > -91 && -Input.GetAxis("Mouse Y") < 91)
-          c.Rotate(-Input.GetAxis("Mouse Y")* sensitivity, 0, 0);
-         c.Rotate(0, 0, -Input.GetAxis("QandE")*90 * Time.deltaTime);
-         if (Input.GetMouseButtonDown(0)){
+         currentRotation.x += Input.GetAxis("Mouse X") * sensitivity;
+         currentRotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
+         currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
+         currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
+         c.transform.rotation = Quaternion.Euler(currentRotation.y,currentRotation.x,0);
+         if (Input.GetMouseButtonDown(0))
              Cursor.lockState = CursorLockMode.Locked;
-          }
-*/
+     
+
       
 
 }
