@@ -24,21 +24,6 @@ public class SettingsMenuButtons : MonoBehaviour
     bool m_IsFullscreen;
     float m_CurrentVolume;
 
-    private void Start()
-    {
-        Load();
-    }
-
-    public void PlayGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     public void ResolutionRightButton()
     {
         NewResolution(1);
@@ -56,6 +41,7 @@ public class SettingsMenuButtons : MonoBehaviour
         PlayerPrefs.Save();
         var res = RESOLUTIONS[m_CurrentRes];
         m_ResolutionText.text = ResolutionToString(res);
+        SetScreen();
     }
 
     private string ResolutionToString(int[] res) => $"{res[0]}x{res[1]}";
@@ -78,10 +64,9 @@ public class SettingsMenuButtons : MonoBehaviour
 
     public void VolumeControl()
     {
-        SetVolume();
-        Debug.Log(AudioListener.volume);
         PlayerPrefs.SetFloat("Volume", m_VolumeSlider.value);
         PlayerPrefs.Save();
+        SetVolume();
     }
 
     private void SetVolume()
