@@ -1,29 +1,45 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SettingsMenuButtons : MonoBehaviour
 {
+    #region Fields
     readonly int[][] RESOLUTIONS = new[] { new[] { 1920, 1080 }, new[] { 1600, 900 }, new[] { 1366, 768 }, new[] { 1280, 720 } };
     readonly string[] INPUT_DEVICES = new[] { "Keyboard + Mouse", "Controller" };
 
-    public Texture2D m_Fullscreen;
-    public Texture2D m_Windowed;
+    [Header("FullScreenButton")]
+    [SerializeField]
+    private Texture2D m_Fullscreen;
+    [SerializeField]
+    private Texture2D m_Windowed;
+    [SerializeField]
+    private Image m_FullScreenToggle;
+
+    [Header("Button Labels")]
+    [SerializeField]
+    private TextMeshProUGUI m_ResolutionText;
+    [SerializeField]
+    private TextMeshProUGUI m_InputText;
+
+    [Header("Volume")]
+    [SerializeField]
+    private Slider m_VolumeSlider;
+
+    // Store for Converting FullScreenButton Textures to Sprite
     Sprite m_FullscreenSprite;
     Sprite m_WindowedSprite;
 
-    public TextMeshProUGUI m_ResolutionText;
-    public TextMeshProUGUI m_InputText;
-    public Image m_FullScreenToggle;
-    public Slider m_VolumeSlider;
-
+    // Current State of Player Preference
     int m_CurrentRes;
     int m_CurrentInput;
     bool m_IsFullscreen;
     float m_CurrentVolume;
+    #endregion
 
+    #region Resolution
     public void ResolutionRightButton()
     {
         NewResolution(1);
@@ -43,9 +59,9 @@ public class SettingsMenuButtons : MonoBehaviour
         m_ResolutionText.text = ResolutionToString(res);
         SetScreen();
     }
+    #endregion
 
-    private string ResolutionToString(int[] res) => $"{res[0]}x{res[1]}";
-
+    #region FullScreen
     public void ToggleFullscreen()
     {
         m_IsFullscreen = !m_IsFullscreen;
@@ -54,14 +70,18 @@ public class SettingsMenuButtons : MonoBehaviour
         m_FullScreenToggle.sprite = m_IsFullscreen ? m_FullscreenSprite : m_WindowedSprite;
         SetScreen();
     }
+    #endregion
 
+    #region General Graphics
     private void SetScreen()
     {
         var res = RESOLUTIONS[m_CurrentRes];
         var fullScreenMode = m_IsFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
         Screen.SetResolution(res[0], res[1], fullScreenMode);
     }
+    #endregion
 
+    #region Volume
     public void VolumeControl()
     {
         PlayerPrefs.SetFloat("Volume", m_VolumeSlider.value);
@@ -73,7 +93,9 @@ public class SettingsMenuButtons : MonoBehaviour
     {
         AudioListener.volume = m_VolumeSlider.value;
     }
+    #endregion
 
+    #region Input
     public void InputRightButton()
     {
         NewInputDevice(1);
@@ -91,6 +113,10 @@ public class SettingsMenuButtons : MonoBehaviour
         PlayerPrefs.Save();
         m_InputText.text = INPUT_DEVICES[m_CurrentInput];
     }
+    #endregion
+
+    #region Helpers
+    private string ResolutionToString(int[] res) => $"{res[0]}x{res[1]}";
 
     static int Mod(int divisor, int dividend)
     {
@@ -115,4 +141,5 @@ public class SettingsMenuButtons : MonoBehaviour
         m_FullScreenToggle.sprite = m_IsFullscreen ? m_FullscreenSprite : m_WindowedSprite;
         m_VolumeSlider.value = m_CurrentVolume;
     }
+    #endregion
 }
