@@ -99,13 +99,11 @@ public class SettingsMenuButtons : MonoBehaviour
     public void InputRightButton()
     {
         NewInputDevice(1);
-        ChooseCurrentInput();
     }
 
     public void InputLeftButton()
     {
         NewInputDevice(-1);
-        ChooseCurrentInput();
     }
 
     public void NewInputDevice(int add)
@@ -125,23 +123,6 @@ public class SettingsMenuButtons : MonoBehaviour
         return (Math.Abs(divisor * dividend) + divisor) % dividend;
     }
 
-    private void ChooseCurrentInput()
-    {
-        Debug.Log(m_CurrentInput == 0 ? "Current: Keyboard" : "Current: Controller");
-        if (m_CurrentInput == 0)
-        {
-            InputSystem.EnableDevice(Keyboard.current);
-            InputSystem.EnableDevice(Mouse.current);
-            InputSystem.DisableDevice(Gamepad.current);
-        }
-        else
-        {
-            InputSystem.DisableDevice(Keyboard.current);
-            InputSystem.DisableDevice(Mouse.current);
-            InputSystem.EnableDevice(Gamepad.current);
-        }
-    }
-
     public void Load()
     {
         m_CurrentRes = PlayerPrefs.HasKey("Resolution") ? PlayerPrefs.GetInt("Resolution") : 0;
@@ -151,7 +132,6 @@ public class SettingsMenuButtons : MonoBehaviour
 
         SetScreen();
         SetVolume();
-        ChooseCurrentInput();
 
         m_FullscreenSprite = Sprite.Create(m_Fullscreen, new Rect(0, 0, m_Fullscreen.width, m_Fullscreen.height), Vector2.zero);
         m_WindowedSprite = Sprite.Create(m_Windowed, new Rect(0, 0, m_Windowed.width, m_Windowed.height), Vector2.zero);
