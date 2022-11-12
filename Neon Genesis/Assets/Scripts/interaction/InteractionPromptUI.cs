@@ -5,8 +5,8 @@ using TMPro;
 
 public class InteractionPromptUI : MonoBehaviour
 {
-    [SerializeField] private GameObject uiPanel;
-    [SerializeField] private TextMeshProUGUI promptText;
+    private GameObject uiPanel;
+    private TextMeshProUGUI promptText;
 
     private Camera _mainCam;
 
