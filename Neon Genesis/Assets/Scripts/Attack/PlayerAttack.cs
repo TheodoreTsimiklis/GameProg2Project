@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     Animator sword;
-    AudioSource hitSound;
+    public AudioSource hitSound;
+    public AudioClip hitClip;
     public bool isAttacking = false;
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,19 @@ public class PlayerAttack : MonoBehaviour
     {
         sword.enabled = true;
         sword.Play("arm_swing");
+        isAttacking = true;
 
+    }
+
+    //sets the player's isAttacking back to false at the end of the attack animation
+    public void doneAttacking()
+    {
+        isAttacking = false;
+    }
+
+    public void playHitSound()
+    {
+        hitSound.PlayOneShot(hitClip);
     }
 
 }
