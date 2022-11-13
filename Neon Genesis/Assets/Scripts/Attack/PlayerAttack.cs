@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject weapon;
-    Animator[] sword;
+    Animator sword;
     AudioSource hitSound;
     public bool isAttacking = false;
     // Start is called before the first frame update
     void Start()
     {
-        sword = weapon.GetComponents<Animator>();
-        hitSound = weapon.GetComponent<AudioSource>();
+        sword = GetComponent<Animator>();
+        hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,13 +26,8 @@ public class PlayerAttack : MonoBehaviour
     }
     public void SwordAttack()
     {
-        isAttacking = true;
-        //activates the trigger in the animator
-        sword[0].SetTrigger("Hit");
-        if (!hitSound.isPlaying)
-        {
-            hitSound.Play();
-        }
+        sword.enabled = true;
+        sword.Play("arm_swing");
 
     }
 
