@@ -16,9 +16,6 @@ public class SwordCollisionDetection : MonoBehaviour
             //reduce the enemys health once hit
             enemy.health-= doDamage();
             Debug.Log(enemy.health + " health left");
-
-            //the attack is over if the enemy gets hit
-            pl.isAttacking = false;
             
         }
     }

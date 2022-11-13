@@ -17978,4 +17978,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 4320696335535348103}
   hitClip: {fileID: 8300000, guid: 787faf6d62f2fd540b90179feab3409e, type: 3}
+  longClip: {fileID: 8300000, guid: efc58100151ffd54c8905d6b3654680d, type: 3}
   isAttacking: 0

@@ -7,7 +7,10 @@ public class PlayerAttack : MonoBehaviour
     Animator sword;
     public AudioSource hitSound;
     public AudioClip hitClip;
+    public AudioClip longClip;
     public bool isAttacking = false;
+    int currentAttackType = 1; // 1 for short swing, 2 for long swing
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +24,39 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0)){
 
-           SwordAttack();
+           SwordShortAttack();
         }
-            
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+
+            SwordLongAttack();
+        }
+
     }
-    public void SwordAttack()
+    public void SwordShortAttack()
     {
-        sword.enabled = true;
-        sword.Play("arm_swing");
-        isAttacking = true;
+        //if the player is not already attacking
+        if (isAttacking == false)
+        {
+            currentAttackType = 1;
+            sword.enabled = true;
+            sword.Play("arm_swing");
+            isAttacking = true;
+
+        }
+        
+    }
+
+    public void SwordLongAttack()
+    {
+        if (isAttacking == false)
+        {
+            currentAttackType = 2;
+            sword.enabled = true;
+            sword.Play("long_swing");
+            isAttacking = true;
+        }
+        
 
     }
 
@@ -41,7 +68,16 @@ public class PlayerAttack : MonoBehaviour
 
     public void playHitSound()
     {
-        hitSound.PlayOneShot(hitClip);
+        //play the right sound for the right attack
+        if (currentAttackType == 1)
+        {
+            hitSound.PlayOneShot(hitClip);
+        }else if (currentAttackType == 2)
+        {
+            hitSound.PlayOneShot(longClip);
+        }
+
+
     }
 
 }
