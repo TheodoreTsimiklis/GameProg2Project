@@ -35,9 +35,5 @@ public class SwordCollisionDetection : MonoBehaviour
         return (int)damageDone;
     }
 
-    //sets the player's isAttacking back to false at the end of the attack animation
-    public void doneAttacking()
-    {
-        pl.isAttacking = false;
-    }
+    
 }
