@@ -85,8 +85,8 @@ public class movement : MonoBehaviour
          currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
          currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
          c.transform.rotation = Quaternion.Euler(currentRotation.y,currentRotation.x,0);
-         if (Input.GetMouseButtonDown(0))
-             Cursor.lockState = CursorLockMode.Locked;
+        //  if (Input.GetMouseButtonDown(0))
+        //      Cursor.lockState = CursorLockMode.Locked;
 
       
 
