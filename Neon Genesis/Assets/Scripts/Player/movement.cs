@@ -7,15 +7,12 @@ public class movement : MonoBehaviour
 {
 
     public Rigidbody rb;
-    Vector3 rotationVector;
-    bool isHeld = false;
     float speed = 0.1f;
     float jumpingForce = 10f;
     bool isGrounded = true;
     public float sensitivity = 10f;
     public float maxYAngle = 80f;
     private Vector2 currentRotation;
-
     public int targetFrameRate = 30;
 
     // Start is called before the first frame update
@@ -91,8 +88,6 @@ public class movement : MonoBehaviour
         
          if (Input.GetMouseButtonDown(0))
              Cursor.lockState = CursorLockMode.Locked;
-
-      
 
 }
 
