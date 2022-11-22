@@ -7,20 +7,20 @@ public class movement : MonoBehaviour
 {
 
     public Rigidbody rb;
-    Vector3 rotationVector;
-    bool isHeld = false;
-    float speed = 0.02f;
+    float speed = 0.1f;
     float jumpingForce = 10f;
     bool isGrounded = true;
     public float sensitivity = 10f;
     public float maxYAngle = 80f;
     private Vector2 currentRotation;
-
+    public int targetFrameRate = 30;
 
     // Start is called before the first frame update
     void Start()
     {
      rb = GetComponent<Rigidbody>();   
+      QualitySettings.vSyncCount = 0;
+         Application.targetFrameRate = targetFrameRate;
     }
 
     // Update is called once per frame
@@ -43,10 +43,10 @@ public class movement : MonoBehaviour
         
         //sprint (zoom the FoV when user wants to sprint)
        if(Input.GetKey(KeyCode.LeftShift)){
-        speed = 0.05f;
+        speed = 0.6f;
         Camera.main.fieldOfView = 45;
        }else if(Input.GetKeyUp(KeyCode.LeftShift)){
-        speed = 0.02f;
+        speed = 0.3f;
         Camera.main.fieldOfView = 60;
        } 
 
@@ -80,15 +80,14 @@ public class movement : MonoBehaviour
 
         //move camera
          var c = rb.transform;
-         currentRotation.x += Input.GetAxis("Mouse X") * sensitivity;
-         currentRotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
+         currentRotation.x += Input.GetAxisRaw("Mouse X") * sensitivity;
+         currentRotation.y -= Input.GetAxisRaw("Mouse Y") * sensitivity;
          currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
          currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
-         c.transform.rotation = Quaternion.Euler(currentRotation.y,currentRotation.x,0);
-        //  if (Input.GetMouseButtonDown(0))
-        //      Cursor.lockState = CursorLockMode.Locked;
-
-      
+         c.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0);
+        
+         if (Input.GetMouseButtonDown(0))
+             Cursor.lockState = CursorLockMode.Locked;
 
 }
 
@@ -98,7 +97,7 @@ public class movement : MonoBehaviour
         * the user is then given the ability to jump again
         */
         private void OnCollisionEnter(Collision other) {
-          if(other.gameObject.name == "floor"){
+          if(other.gameObject.name == "MAP"){
             isGrounded = true;
           }
         }
