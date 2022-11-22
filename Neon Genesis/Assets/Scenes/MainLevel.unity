@@ -22026,7 +22026,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4320696335199622383, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
       propertyPath: maxYAngle
-      value: 70
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320696335199622383, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
+      propertyPath: targetFrameRate
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4320696335199622384, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
       propertyPath: m_RootOrder
