@@ -44,10 +44,10 @@ public class movement : MonoBehaviour
         //sprint (zoom the FoV when user wants to sprint)
        if(Input.GetKey(KeyCode.LeftShift)){
         speed = 0.6f;
-        Camera.main.fieldOfView = 45;
+        Camera.main.fieldOfView = 65;
        }else if(Input.GetKeyUp(KeyCode.LeftShift)){
         speed = 0.3f;
-        Camera.main.fieldOfView = 60;
+        Camera.main.fieldOfView = 75;
        } 
 
         //walk backwards
@@ -71,12 +71,6 @@ public class movement : MonoBehaviour
        }else if(Input.GetKeyUp(KeyCode.LeftControl)){
          rb.transform.localScale = new Vector3(1f, 1f, 1f);
        } 
-
-
-        //restart level
-       if(Input.GetKey(KeyCode.Escape)){
-          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-       }
 
         //move camera
          var c = rb.transform;
