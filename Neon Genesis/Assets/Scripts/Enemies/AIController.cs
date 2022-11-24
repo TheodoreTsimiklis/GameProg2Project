@@ -21,7 +21,7 @@ public class AIController : MonoBehaviour
     public float edgeDistance = 0.5f;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
  
  
-    public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
+    //public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
  
     Vector3 playerLastPosition = Vector3.zero;      //  Last position of the player when was near the enemy
@@ -49,7 +49,7 @@ public class AIController : MonoBehaviour
  
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
-        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+        //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
     }
  
     private void Update()
@@ -87,7 +87,7 @@ public class AIController : MonoBehaviour
                 Move(speedWalk);
                 m_TimeToRotate = timeToRotate;
                 m_WaitTime = startWaitTime;
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
             }
             else
             {
@@ -120,13 +120,13 @@ public class AIController : MonoBehaviour
         {
             m_PlayerNear = false;           //  The player is no near when the enemy is platroling
             playerLastPosition = Vector3.zero;
-            navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the enemy destination to the next waypoint
+            //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the enemy destination to the next waypoint
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
                 //  If the enemy arrives to the waypoint position then wait for a moment and go to the next
                 if (m_WaitTime <= 0)
                 {
-                    NextPoint();
+                    //NextPoint();
                     Move(speedWalk);
                     m_WaitTime = startWaitTime;
                 }
@@ -139,16 +139,11 @@ public class AIController : MonoBehaviour
         }
     }
  
-    private void OnAnimatorMove()
-    {
- 
-    }
- 
-    public void NextPoint()
-    {
-        m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-        navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-    }
+   // public void NextPoint()
+    //{
+       // m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+        //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+    //}
  
     void Stop()
     {
@@ -176,7 +171,7 @@ public class AIController : MonoBehaviour
             {
                 m_PlayerNear = false;
                 Move(speedWalk);
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                //navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
                 m_WaitTime = startWaitTime;
                 m_TimeToRotate = timeToRotate;
             }
