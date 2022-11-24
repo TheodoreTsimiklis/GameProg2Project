@@ -19,6 +19,10 @@ public class SwordCollisionDetection : MonoBehaviour
         }else if (other.tag == "Skeleton" && pl.isAttacking)
         {
             other.GetComponent<Skeleton>().TakeDamage(doDamage());
+
+        }else if (other.tag == "Slime" && pl.isAttacking)
+        {
+            other.GetComponent<Slime>().TakeDamage(doDamage());
         }
     }
 

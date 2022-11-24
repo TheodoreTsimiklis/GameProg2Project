@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Dragon
   - Skeleton
+  - Slime
   layers:
   - Default
   - TransparentFX
