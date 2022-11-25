@@ -1,11 +1,23 @@
 fileFormatVersion: 2
-guid: 69a0d6704af873e4bb99e5a3a1700868
+guid: 92e1717a64b792c4cb88758925a4160f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
+      74: -2369485670025405481
+    second: SkeletonArmature|Skeleton_Attack
+  - first:
+      74: -3541391417983299662
+    second: SkeletonArmature|Skeleton_Death
+  - first:
+      74: 1881067910185220424
+    second: SkeletonArmature|Skeleton_Idle
+  - first:
+      74: 8534037678179333468
+    second: SkeletonArmature|Skeleton_Running
+  - first:
+      74: -1372735270039135212
+    second: SkeletonArmature|Skeleton_Spawn
   externalObjects: {}
   materials:
     materialImportMode: 2

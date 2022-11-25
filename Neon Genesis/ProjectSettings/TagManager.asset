@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Skeleton
+  - Dragon
+  - Slime
   layers:
   - Default
   - TransparentFX
