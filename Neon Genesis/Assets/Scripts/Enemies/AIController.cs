@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
+    Animator anim;
+
     public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
 
     public GameObject playerPrefab;
@@ -36,6 +38,8 @@ public class AIController : MonoBehaviour
  
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         m_PlayerPosition = Vector3.zero;
         m_IsPatrol = true;
         m_CaughtPlayer = false;
@@ -59,10 +63,15 @@ public class AIController : MonoBehaviour
         if (!m_IsPatrol)
         {
             Chasing();
+            anim.SetBool("isRunning", true);
+            anim.SetBool("isFlying", true);
+            anim.SetBool("isJumping", true);
         }
         else
         {
             Patroling();
+            anim.SetBool("isRunning", false);
+            anim.SetBool("isJumping", false);
         }
     }
  

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1750429520473340210}
   - component: {fileID: 941237158019722880}
   - component: {fileID: 7074976105397579601}
+  - component: {fileID: 6561627173239453918}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Enemy
@@ -67,8 +68,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 7253790161917930896, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
   startWaitTime: 4
   timeToRotate: 0
-  speedWalk: 8
-  speedRun: 10
+  speedWalk: 6
+  speedRun: 6
   viewRadius: 5000
   viewAngle: 360
   playerMask:
@@ -144,6 +145,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0539796, y: 1, z: 1.2221543}
   m_Center: {x: -0.007656932, y: 2.87, z: 1.2510769}
+--- !u!95 &6561627173239453918
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6534718015797769013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: beec5b81f056e14468f52b13ed8a1b1b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6a05a18bbcb397c40867cf8e2ace861b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &3323374174937517979
 PrefabInstance:
   m_ObjectHideFlags: 0
