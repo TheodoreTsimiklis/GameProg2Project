@@ -1,23 +1,20 @@
 fileFormatVersion: 2
-guid: 92e1717a64b792c4cb88758925a4160f
+guid: 422764b10f634ad44b8c42e6e59e79a0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -2369485670025405481
-    second: SkeletonArmature|Skeleton_Attack
+      74: 5424966009276265124
+    second: Armature|Slime_Attack
   - first:
-      74: -3541391417983299662
-    second: SkeletonArmature|Skeleton_Death
+      74: 4531912406860793044
+    second: Armature|Slime_Death
   - first:
-      74: 1881067910185220424
-    second: SkeletonArmature|Skeleton_Idle
+      74: 4749002936024538594
+    second: Armature|Slime_Idle
   - first:
-      74: 8534037678179333468
-    second: SkeletonArmature|Skeleton_Running
-  - first:
-      74: -1372735270039135212
-    second: SkeletonArmature|Skeleton_Spawn
+      74: 6793611496562888960
+    second: Armature|Slime_Walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -47,40 +44,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: SkeletonArmature|Skeleton_Attack
-      takeName: SkeletonArmature|Skeleton_Attack
+      name: Armature|Slime_Attack
+      takeName: Armature|Slime_Attack
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: SkeletonArmature|Skeleton_Death
-      takeName: SkeletonArmature|Skeleton_Death
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 0
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -105,40 +73,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: SkeletonArmature|Skeleton_Idle
-      takeName: SkeletonArmature|Skeleton_Idle
+      name: Armature|Slime_Death
+      takeName: Armature|Slime_Death
       internalID: 0
       firstFrame: 0
-      lastFrame: 3
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: SkeletonArmature|Skeleton_Running
-      takeName: SkeletonArmature|Skeleton_Running
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -163,11 +102,40 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: SkeletonArmature|Skeleton_Spawn
-      takeName: SkeletonArmature|Skeleton_Spawn
+      name: Armature|Slime_Idle
+      takeName: Armature|Slime_Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 3
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Slime_Walk
+      takeName: Armature|Slime_Walk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
     Animator sword;
+    private int playerHealth = 100;
     public AudioSource hitSound;
     public AudioClip hitClip;
     public AudioClip longClip;
     public bool isAttacking = false;
     int currentAttackType = 1; // 1 for short swing, 2 for long swing
+    public Slider healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,9 @@ public class PlayerAttack : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        //health bar reflects the players health
+        healthBar.value = playerHealth;
 
         if (Input.GetKeyDown(KeyCode.Mouse0)){
 
