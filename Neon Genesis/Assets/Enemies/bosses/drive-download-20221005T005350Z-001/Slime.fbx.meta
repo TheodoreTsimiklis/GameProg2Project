@@ -1,11 +1,20 @@
 fileFormatVersion: 2
-guid: c6d05f01460f2b8438eb3d25153aca85
+guid: 422764b10f634ad44b8c42e6e59e79a0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
+      74: 5424966009276265124
+    second: Armature|Slime_Attack
+  - first:
+      74: 4531912406860793044
+    second: Armature|Slime_Death
+  - first:
+      74: 4749002936024538594
+    second: Armature|Slime_Idle
+  - first:
+      74: 6793611496562888960
+    second: Armature|Slime_Walk
   externalObjects: {}
   materials:
     materialImportMode: 2

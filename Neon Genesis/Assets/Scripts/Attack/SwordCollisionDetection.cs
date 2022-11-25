@@ -9,31 +9,39 @@ public class SwordCollisionDetection : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         //get the enemys information
-        EnemyTest enemy = other.GetComponent<EnemyTest>();
+        //EnemyTest enemy = other.GetComponent<EnemyTest>();
 
-        if (other.tag == "Enemy" && pl.isAttacking)
+        if (other.tag == "Dragon" && pl.isAttacking)
         {
             //reduce the enemys health once hit
-            enemy.health-= doDamage();
-            Debug.Log(enemy.health + " health left");
-            
+            other.GetComponent<Dragon>().TakeDamage(doDamage());
+
+        }
+        else if (other.tag == "Skeleton" && pl.isAttacking)
+        {
+            other.GetComponent<Skeleton>().TakeDamage(doDamage());
+
+        }
+        else if (other.tag == "Slime" && pl.isAttacking)
+        {
+            other.GetComponent<Slime>().TakeDamage(doDamage());
         }
     }
 
     int doDamage()
     {
-        if (Random.Range(0,5) == 4)
+        if (Random.Range(0, 5) == 4)
         {
             //1/4 chance of dealing crit hit
-            damageDone = 4;
+            damageDone = 10;
         }
         else
         {
-            damageDone = 2;
+            damageDone = 20;
         }
 
         return (int)damageDone;
     }
 
-    
+
 }
