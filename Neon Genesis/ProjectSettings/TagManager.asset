@@ -8,6 +8,7 @@ TagManager:
   - Skeleton
   - Dragon
   - Slime
+  - PurchasePrompt
   layers:
   - Default
   - TransparentFX
