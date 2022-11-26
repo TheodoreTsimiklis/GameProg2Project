@@ -17,7 +17,6 @@ public class PlayerStats : MonoBehaviour
 
     public int Money { get; set; } = 1000;
 
-# if !UNITY_STANDALONE && UNITY_EDITOR
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -26,7 +25,6 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player given 1000 G");
         }
     }
-# endif
 
     // NOTE: Probably change the scaling from Linear to Logarithmic later on.
     public void AttackLevelUp()
