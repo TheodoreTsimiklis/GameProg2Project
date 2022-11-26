@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3036628, g: 0.51938057, b: 0.81166416, a: 1}
+  m_IndirectSpecularColor: {r: 0.3037048, g: 0.5194042, b: 0.8118584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5215,6 +5215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xPos: 0
   yPos: 0
+  complete: {fileID: 1719009805}
   store: 0
   waves:
   - name: 
@@ -15458,7 +15459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1719009806
 Transform:
   m_ObjectHideFlags: 0
@@ -19369,9 +19370,21 @@ PrefabInstance:
       value: 9.86
       objectReference: {fileID: 0}
     - target: {fileID: 7253790161917930904, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
+      propertyPath: dvalue
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253790161917930904, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7253790161917930904, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 810141884}
+    - target: {fileID: 7253790161917930904, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
+      propertyPath: staminahBar
+      value: 
+      objectReference: {fileID: 1649651247}
     - target: {fileID: 7355922485401873405, guid: 07203e6a1ecdb414eb9069b2724acfd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0007218915

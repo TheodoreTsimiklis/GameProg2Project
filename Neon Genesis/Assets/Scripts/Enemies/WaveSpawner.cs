@@ -7,7 +7,7 @@ public class WaveSpawner : MonoBehaviour
     public enum SpawnState {SPAWING, WAITING, COUNTING};
     public int xPos;
     public int yPos;
-    //public GameObject complete;
+    public GameObject complete;
     public static int show;
     public static int mult;
     public int store;
@@ -35,7 +35,7 @@ public class WaveSpawner : MonoBehaviour
     void Start() 
     {
         waveCountDowndown = timeBetweenWaves;
-        //complete.SetActive(false);
+        complete.SetActive(false);
         show = 0;
         mult = 1;
     }
@@ -109,9 +109,9 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log(mult+ "first");
         
         if (show > 0) {
-            //complete.SetActive(true);
+            complete.SetActive(true);
             yield return new WaitForSeconds(3f);
-            //complete.SetActive(false);
+            complete.SetActive(false);
         }
 
             Debug.Log("The Global variable = " + GlobaleVariable.num);
