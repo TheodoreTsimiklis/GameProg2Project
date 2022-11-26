@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, Subject
 {
     public int AttackDamage { get; private set; }
     public float CritChance { get; private set; }
@@ -17,11 +17,14 @@ public class PlayerStats : MonoBehaviour
 
     public int Money { get; set; } = 1000;
 
+    private List<Observer> observers = new List<Observer>();
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
             Money = 1000;
+            notify();
             Debug.Log("Player given 1000 G");
         }
     }
@@ -31,22 +34,26 @@ public class PlayerStats : MonoBehaviour
     {
         ++AttackLevel;
         AttackDamage = AttackScaling(AttackLevel);
+        notify();
     }
 
     public void CritLevelUp()
     {
         ++CritLevel;
         CritChance = CritScaling(CritLevel);
+        notify();
     }
     public void HealthLevelUp()
     {
         ++HealthLevel;
         MaxHealth = HealthScaling(HealthLevel);
+        notify();
     }
     public void SpeedLevelUp()
     {
         ++SpeedLevel;
         Speed = SpeedScaling(SpeedLevel);
+        notify();
     }
 
     public int AttackScaling(int level) => (int)StatScaling(1.1f, level, 10f);
@@ -55,4 +62,22 @@ public class PlayerStats : MonoBehaviour
     public float SpeedScaling(int level) => StatScaling(0.01f, level, 1f);
 
     private float StatScaling(float scale, int level, float baseVal) => scale * level + baseVal;
+
+    public void attach(Observer o)
+    {
+        observers.Add(o);
+    }
+
+    public void detach(Observer o)
+    {
+        observers.Remove(o);
+    }
+
+    public void notify()
+    {
+        foreach (var o in observers)
+        {
+            o.SubjectUpdate();
+        }
+    }
 }

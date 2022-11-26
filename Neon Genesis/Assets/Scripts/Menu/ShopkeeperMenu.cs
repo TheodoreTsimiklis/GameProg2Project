@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class ShopkeeperMenu : MonoBehaviour
+public class ShopkeeperMenu : MonoBehaviour, Observer
 {
     private readonly static Color DisabledButton = new Color(0, ByteColorToFloat(90), ByteColorToFloat(125), ByteColorToFloat(150));
     private readonly static Color EnabledButton = new Color(0, ByteColorToFloat(174), ByteColorToFloat(242), ByteColorToFloat(150));
@@ -53,11 +53,7 @@ public class ShopkeeperMenu : MonoBehaviour
     void Awake()
     {
         m_PlayerStats = m_Player.GetComponent<PlayerStats>();
-    }
-
-    void OnEnable()
-    {
-        Debug.Log("Enabled!");
+        m_PlayerStats.attach(this);
         SetMenuState();
     }
 
@@ -77,12 +73,6 @@ public class ShopkeeperMenu : MonoBehaviour
         {
             ExitMenu();
         }
-
-        if (purchased)
-        {
-            SetMenuState();
-            purchased = false;
-        }
     }
 
     public void BuyAttack()
@@ -90,7 +80,6 @@ public class ShopkeeperMenu : MonoBehaviour
         int attackLevel = m_PlayerStats.AttackLevel;
         Purchase(attackLevel);
         m_PlayerStats.AttackLevelUp();
-        purchased = true;
         Debug.Log($"Attack Damage: {m_PlayerStats.AttackDamage}");
     }
 
@@ -99,7 +88,6 @@ public class ShopkeeperMenu : MonoBehaviour
         int critLevel = m_PlayerStats.CritLevel;
         Purchase(critLevel);
         m_PlayerStats.CritLevelUp();
-        purchased = true;
         Debug.Log($"Crit Chance: {m_PlayerStats.CritChance * 100}%");
     }
 
@@ -108,7 +96,6 @@ public class ShopkeeperMenu : MonoBehaviour
         int healthLevel = m_PlayerStats.HealthLevel;
         Purchase(healthLevel);
         m_PlayerStats.HealthLevelUp();
-        purchased = true;
         Debug.Log($"Max Health: {m_PlayerStats.MaxHealth}");
     }
 
@@ -117,7 +104,6 @@ public class ShopkeeperMenu : MonoBehaviour
         int speedLevel = m_PlayerStats.SpeedLevel;
         Purchase(speedLevel);
         m_PlayerStats.SpeedLevelUp();
-        purchased = true;
         Debug.Log($"Speed Multiplier: {m_PlayerStats.Speed}");
     }
 
@@ -156,11 +142,6 @@ public class ShopkeeperMenu : MonoBehaviour
         m_PlayerStats.Money -= CalculatePrice(statLevel);
     }
 
-    private bool IsPurchaseable(int statLevel) => m_PlayerStats.Money >= CalculatePrice(statLevel);
-
-    // Probably change this into a quadratic scaling later on.
-    private int CalculatePrice(int statLevel) => (int)((.25f * statLevel + 1) * BasePrice);
-
     private void SetPromptsState()
     {
         int attackLevel = m_PlayerStats.AttackLevel;
@@ -194,5 +175,16 @@ public class ShopkeeperMenu : MonoBehaviour
         SetButtonsState();
     }
 
+    private bool IsPurchaseable(int statLevel) => m_PlayerStats.Money >= CalculatePrice(statLevel);
+
+    // Probably change this into a quadratic scaling later on.
+    private int CalculatePrice(int statLevel) => (int)((.25f * statLevel + 1) * BasePrice);
+
+
     private static float ByteColorToFloat(byte color) => color / 255f;
+
+    public void SubjectUpdate()
+    {
+        SetMenuState();
+    }
 }
