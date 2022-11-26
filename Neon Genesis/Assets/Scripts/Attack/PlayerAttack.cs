@@ -48,20 +48,14 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1)) // This if statement will decrease the the stamina of the player
         {
             DecreaseStamina();
-        if(staminahBar.value <= 100 && staminahBar.value > 70) {
-            currentAttackType = 6;
-        } else if(staminahBar.value < 70 && staminahBar.value > 40) {
-            currentAttackType = 5;
-        } else if(staminahBar.value < 40 && staminahBar.value > 30) {
-            currentAttackType = 4;
-        } else if(staminahBar.value < 30 && staminahBar.value > 10) {
-            currentAttackType = 3;
+        if(staminahBar.value < 50) {
+            isAttacking = true;
         } else {
-             currentAttackType = 2;
+            isAttacking = false;
         }
 
-        staminahBar.value = stamina;
-        SwordLongAttack(currentAttackType);
+            staminahBar.value = stamina;
+            SwordLongAttack(currentAttackType); 
         }
     }
 
@@ -135,7 +129,7 @@ public class PlayerAttack : MonoBehaviour
     private void IncreaseStamina() 
     {
         if (stamina <= 100) {
-            stamina += 10 * Time.deltaTime;
+            stamina += 30 * Time.deltaTime;
         } else {
             Debug.Log("pleace" + stamina);
         }
