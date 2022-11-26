@@ -44,7 +44,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (state == SpawnState.WAITING) 
         {
-            if(!EnemyIsAlive())
+            if(!CheckIfEnemyIsAlive())
             {
                 Debug.Log("Wave completed");
                 BeginningNewRound();
@@ -61,7 +61,7 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine( SpawnWave (waves[nextWave]));
             }
 
-        } else 
+            } else 
         {
             waveCountDowndown -= Time.deltaTime;
         }
@@ -72,6 +72,7 @@ public class WaveSpawner : MonoBehaviour
         Debug.Log("Beggining new round");
         state = SpawnState.COUNTING;
         waveCountDowndown = timeBetweenWaves;
+        GlobaleVariable.num += 1;
 
         if (nextWave + 1 > waves.Length - 1)
         {
@@ -84,7 +85,7 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    bool EnemyIsAlive()
+    bool CheckIfEnemyIsAlive()
     {
         searchCountDown -= Time.deltaTime;
         if (searchCountDown <= 0f)
@@ -103,8 +104,6 @@ public class WaveSpawner : MonoBehaviour
     {
         Debug.Log("The ennemy is spawning");
         state = SpawnState.SPAWING;
-
-        
         mult += 2; // Add 2 extra enemies in the game for each wave
         store = mult; // This will store the multiplier values inside another variable
         Debug.Log(mult+ "first");
@@ -115,15 +114,20 @@ public class WaveSpawner : MonoBehaviour
             //complete.SetActive(false);
         }
 
+            Debug.Log("The Global variable = " + GlobaleVariable.num);
+        if (GlobaleVariable.num % 3 == 0) { // This if statement is to set the number of boss at the final level
+            GlabaleVariableIncreaser.num += 1;
+            mult = 8;
+        }
+
         for (int i = 0; i < mult; i++) 
         {  
             SpawnEnemy(_wave.enemy);
             //yield return new WaitForSeconds( 1f/_wave.rate);
             show += 1;
         }
-        mult = store; //Set the multipier back to his initial value
-        Debug.Log(mult+ "second");
 
+        mult = store; //Set the multipier back to his initial value
         state = SpawnState.WAITING;
         yield break;
     }
