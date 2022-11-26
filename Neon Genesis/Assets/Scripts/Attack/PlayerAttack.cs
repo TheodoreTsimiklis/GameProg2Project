@@ -13,12 +13,19 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking = false;
     int currentAttackType = 1; // 1 for short swing, 2 for long swing
     public Slider healthBar;
+    public Slider staminahBar;
+    public float stamina;
+    float maxStamina;
+    public float dvalue;
+    private float hundred;
 
     // Start is called before the first frame update
     void Start()
     {
         sword = GetComponent<Animator>();
         hitSound = GetComponent<AudioSource>();
+        maxStamina = stamina;
+        staminahBar.maxValue = maxStamina;
     }
 
     // Update is called once per frame
@@ -27,18 +34,37 @@ public class PlayerAttack : MonoBehaviour
         //health bar reflects the players health
         healthBar.value = playerHealth;
 
+        if (!Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            IncreaseStamina();
+            staminahBar.value = stamina;
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-
             SwordShortAttack();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
 
-            SwordLongAttack();
+        if (Input.GetKeyDown(KeyCode.Mouse1)) // This if statement will decrease the the stamina of the player
+        {
+            DecreaseStamina();
+        if(staminahBar.value <= 100 && staminahBar.value > 70) {
+            currentAttackType = 6;
+        } else if(staminahBar.value < 70 && staminahBar.value > 40) {
+            currentAttackType = 5;
+        } else if(staminahBar.value < 40 && staminahBar.value > 30) {
+            currentAttackType = 4;
+        } else if(staminahBar.value < 30 && staminahBar.value > 10) {
+            currentAttackType = 3;
+        } else {
+             currentAttackType = 2;
         }
 
+        staminahBar.value = stamina;
+        SwordLongAttack(currentAttackType);
+        }
     }
+
     public void SwordShortAttack()
     {
         //if the player is not already attacking
@@ -53,17 +79,16 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    public void SwordLongAttack()
+    public void SwordLongAttack(int hitAttackNumber)
     {
         if (isAttacking == false)
         {
-            currentAttackType = 2;
+            currentAttackType = hitAttackNumber;
+            Debug.Log("The value " + currentAttackType);
             sword.enabled = true;
             sword.Play("long_swing");
             isAttacking = true;
         }
-
-
     }
 
     //sets the player's isAttacking back to false at the end of the attack animation
@@ -83,9 +108,41 @@ public class PlayerAttack : MonoBehaviour
         {
             hitSound.PlayOneShot(longClip);
         }
-
-
     }
 
-}
+    /**
+    * This function decreases the stamina of the player
+    */
+    private void DecreaseStamina() 
+    {
+        if(stamina != 0) 
+        {
+            Debug.Log("pleace" + stamina);
+            stamina -= dvalue;
+        } else {
+            // The player must wait until his stamina increases
+        }
 
+        if (stamina < 0) //This if statement will set the value of the stamina back to 0 if ever goes under 0
+        {
+            stamina = 0;
+        }
+    }
+
+    /**
+    * This function increases the stamina of the player
+    */
+    private void IncreaseStamina() 
+    {
+        if (stamina <= 100) {
+            stamina += 10 * Time.deltaTime;
+        } else {
+            Debug.Log("pleace" + stamina);
+        }
+
+        if (stamina > 100) //This if statement will set the value of the stamina back to 100 if ever goes under 0
+        {
+            stamina = 100;
+        }
+    }
+}
