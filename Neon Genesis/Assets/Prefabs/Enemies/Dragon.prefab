@@ -638,6 +638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragon: {fileID: 6538899323331267057}
   healthBar: {fileID: 4834705661085336}
+  animator: {fileID: 6565887641097044506}
 --- !u!1001 &3319102450028311903
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slime: {fileID: 4853875727777913805}
   healthBar: {fileID: 4938834333989268659}
+  animator: {fileID: 372249398229081113}
 --- !u!1001 &317718822719689684
 PrefabInstance:
   m_ObjectHideFlags: 0

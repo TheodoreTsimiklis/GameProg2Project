@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class HealthbarFacePlayer : MonoBehaviour
 {
-    public Transform cam;
-
-    
     void LateUpdate()
     {
-        transform.LookAt(cam);
+        transform.rotation = Camera.main.transform.rotation;
     }
 }
