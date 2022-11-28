@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeleton: {fileID: 3675166535480688983}
   healthBar: {fileID: 6664288265266208606}
+  animator: {fileID: 9119641572828530140}
 --- !u!1 &6664288264669760073
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Dragon : MonoBehaviour
 {
     private int health = 100;
     public GameObject dragon;
     public Slider healthBar;
+    public Animator animator;
     void Start()
     {
         
@@ -26,9 +28,13 @@ public class Dragon : MonoBehaviour
         health -= damageAmount;
         if(health <= 0)
         {
-            //TODO: set enemy death animation
+            animator.SetTrigger("die");
+            //disable the enemy movement
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
 
-            dragon.SetActive(false);
+            //destroy object after 2 seconds to allow animation to play
+            Destroy(dragon, 2f);
         }
         else
         {
