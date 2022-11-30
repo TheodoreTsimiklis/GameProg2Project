@@ -139,4 +139,17 @@ public class PlayerAttack : MonoBehaviour
             stamina = 100;
         }
     }
+
+    /**
+    * This function allows the player to take a specific amount of damage
+    */
+    public void TakeDamage(int damage)
+    {
+        playerHealth -= damage;
+        if (playerHealth <= 0)
+        {
+            //game over
+            Debug.Log("PLAYER DEAD");
+        }
+    }
 }
