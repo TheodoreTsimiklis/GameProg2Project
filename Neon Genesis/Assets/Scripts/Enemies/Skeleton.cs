@@ -36,7 +36,7 @@ public class Skeleton : MonoBehaviour
        healthBar.value = health;
 
         float distance = Vector3.Distance(player.position, animator.transform.position);
-        //attack if distance is less than 5
+        //attack if distance is less than 4
         if (distance < 4f)
         {
             AttackPlayer();
