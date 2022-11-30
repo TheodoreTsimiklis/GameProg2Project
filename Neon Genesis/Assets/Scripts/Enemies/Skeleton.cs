@@ -10,13 +10,14 @@ public class Skeleton : MonoBehaviour
     public GameObject skeleton;
     public Slider healthBar;
     public Animator animator;
-    private bool alreadyAttacked;
-    //skeleton waits 2 seconds before attacking again
-    private int timeBetweenAttacks = 2;
+    private GameObject player;
+
+    //the amount of damage a skeleton does
+    private int damage = 10;
     // Start is called before the first frame update
     void Start()
     {
-        alreadyAttacked = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -44,28 +45,12 @@ public class Skeleton : MonoBehaviour
             Destroy(skeleton, 2f);
             
         }
-        else
-        {
-            //TODO: play enemy get hit animation
-
-
-        }
     }
 
     private void AttackPlayer()
     {
-        //if the enemy hasnt already attacked
-        if (!alreadyAttacked)
-        {
-            
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+        player.GetComponent<PlayerAttack>().TakeDamage(damage);
     }
 
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
+    
 }
