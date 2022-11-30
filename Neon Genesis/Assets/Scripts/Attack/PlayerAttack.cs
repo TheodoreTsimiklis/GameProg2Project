@@ -149,6 +149,7 @@ public class PlayerAttack : MonoBehaviour
         if (playerHealth <= 0)
         {
             //game over
+            Debug.Log("PLAYER DEAD");
         }
     }
 }
