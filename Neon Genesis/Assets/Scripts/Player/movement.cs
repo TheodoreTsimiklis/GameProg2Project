@@ -15,6 +15,12 @@ public class movement : MonoBehaviour
     private Vector2 currentRotation;
     public int targetFrameRate = 30;
 
+    void Awake()
+    {
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,10 +85,6 @@ public class movement : MonoBehaviour
          currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
          currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
          c.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0);
-        
-         if (Input.GetMouseButtonDown(0))
-             Cursor.lockState = CursorLockMode.Locked;
-
 }
 
         /*

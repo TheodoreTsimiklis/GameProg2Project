@@ -140,6 +140,7 @@ public class SettingsMenuButtons : MonoBehaviour
         m_InputText.text = INPUT_DEVICES[m_CurrentInput];
         m_FullScreenToggle.sprite = m_IsFullscreen ? m_FullscreenSprite : m_WindowedSprite;
         m_VolumeSlider.value = m_CurrentVolume;
+        Debug.Log("Loaded");
     }
     #endregion
 }
