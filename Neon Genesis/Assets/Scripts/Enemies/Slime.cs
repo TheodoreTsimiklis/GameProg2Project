@@ -14,14 +14,14 @@ public class Slime : MonoBehaviour
     private bool alreadyAttacked;
     private AudioSource audio;
     //the amount of seconds an enemy waits before attacking again
-    private int timeBetweenAttacks = 2;
+    private int timeBetweenAttacks = 3;
     private bool isAlive = true;
 
     //the players position
     private Transform player;
 
     //the amount of damage a slime does
-    private int damage = 5;
+    private int damage = 4;
     // Start is called before the first frame update
     void Start()
     {

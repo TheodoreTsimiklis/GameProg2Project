@@ -14,14 +14,14 @@ public class Skeleton : MonoBehaviour
     private bool alreadyAttacked;
     private AudioSource audio;
     //the amount of seconds an enemy waits before attacking again
-    private int timeBetweenAttacks = 2;
+    private int timeBetweenAttacks = 3;
     private bool isAlive = true;
 
     //the players position
     private Transform player;
 
     //the amount of damage a skeleton does
-    private int damage = 10;
+    private int damage = 3;
     // Start is called before the first frame update
     void Start()
     {

@@ -14,13 +14,13 @@ public class Dragon : MonoBehaviour
     private bool alreadyAttacked;
     private AudioSource audio;
     //the amount of seconds an enemy waits before attacking again
-    private int timeBetweenAttacks = 2;
+    private int timeBetweenAttacks = 3;
     private bool isAlive = true;
 
     //the players position
     private Transform player;
     //the amount of damage a dragon does
-    private int damage = 15;
+    private int damage = 5;
     void Start()
     {
         alreadyAttacked = false;
