@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using System.Threading.Tasks;
 
 public class Skeleton : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class Skeleton : MonoBehaviour
     //the amount of seconds an enemy waits before attacking again
     private int timeBetweenAttacks = 3;
     private bool isAlive = true;
+    private float attackingDistance = 4f;
+
+    //distance between enemy and player
+    private float distance;
 
     //the players position
     private Transform player;
@@ -33,15 +38,15 @@ public class Skeleton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       healthBar.value = health;
+        healthBar.value = health;
 
-        float distance = Vector3.Distance(player.position, animator.transform.position);
+        distance = Vector3.Distance(player.position, animator.transform.position);
         //attack if distance is less than 4
-        if (distance < 4f)
+        if (distance < attackingDistance)
         {
             AttackPlayer();
         }
-            
+
     }
 
     public void TakeDamage(int damageAmount)
@@ -61,21 +66,36 @@ public class Skeleton : MonoBehaviour
         }
     }
 
-    private void AttackPlayer()
+    private async void AttackPlayer()
     {
         //if enemy has not already attacked
-        if (!alreadyAttacked && isAlive == true)
+        if (!alreadyAttacked && isAlive)
         {
-            animator.Play("SkeletonArmature|Skeleton_Attack");
-            audio.PlayOneShot(hit);
-            //deal damage
-            player.GetComponent<PlayerAttack>().TakeDamage(damage);
-            alreadyAttacked = true;
+            await Task.Delay(500);
+            
+            distance = Vector3.Distance(player.position, animator.transform.position);
+            //if enemy is still in attacking range after half a second, deal damage
+            if (distance < attackingDistance)
+            {
+                while (!alreadyAttacked && isAlive)
+                {
+                    audio.PlayOneShot(hit);
+                    //deal damage
+                    player.GetComponent<PlayerAttack>().TakeDamage(damage);
+                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                    alreadyAttacked = true;
+                    
+                }
 
-            //allows the enemy to attack again in 2 seconds
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+            //check again if enemy is still alive before playing animation
+            if (isAlive)
+            {
+                animator.Play("ackletonArmature|Skeleton_Attack");
+            }
+            
         }
-        
+
     }
 
     private void ResetAttack()
@@ -83,5 +103,5 @@ public class Skeleton : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    
+
 }
