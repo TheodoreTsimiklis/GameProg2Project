@@ -151,7 +151,7 @@ public class ShopkeeperMenu : MonoBehaviour, Observer
 
         AttackPrompt.text = $"{m_PlayerStats.AttackScaling(attackLevel)}→{m_PlayerStats.AttackScaling(attackLevel + 1)}";
         CritPrompt.text = $"{m_PlayerStats.CritScaling(critLevel) * 100}%→{m_PlayerStats.CritScaling(critLevel + 1) * 100}%";
-        HealthPrompt.text = $"{m_PlayerStats.HealthScaling(healthLevel)}→{m_PlayerStats.HealthScaling(critLevel + 1)}";
+        HealthPrompt.text = $"{m_PlayerStats.HealthScaling(healthLevel)}→{m_PlayerStats.HealthScaling(healthLevel + 1)}";
         SpeedPrompt.text = $"{m_PlayerStats.SpeedScaling(speedLevel)}→{m_PlayerStats.SpeedScaling(speedLevel + 1)}";
 
         SetPriceState(AttackPrice, attackLevel);
