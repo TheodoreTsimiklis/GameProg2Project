@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, Subject
 {
-    public int AttackDamage { get; private set; }
-    public float CritChance { get; private set; }
-    public int MaxHealth { get; private set; }
-    public float Speed { get; private set; }
+    public int AttackDamage { get; private set; } = 10;
+    public float CritChance { get; private set; } = 0.05f;
+    public int MaxHealth { get; private set; } = 100;
+    public float Speed { get; private set; } = 0.3f;
 
     public int AttackLevel { get; private set; } = 0;
     public int CritLevel { get; private set; } = 0;
@@ -18,16 +18,6 @@ public class PlayerStats : MonoBehaviour, Subject
     public int Money { get; set; } = 1000;
 
     private List<Observer> observers = new List<Observer>();
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Money = 1000;
-            notify();
-            Debug.Log("Player given 1000 G");
-        }
-    }
 
     // NOTE: Probably change the scaling from Linear to Logarithmic later on.
     public void AttackLevelUp()
@@ -58,8 +48,8 @@ public class PlayerStats : MonoBehaviour, Subject
 
     public int AttackScaling(int level) => (int)StatScaling(1.1f, level, 10f);
     public float CritScaling(int level) => StatScaling(0.02f, level, 0.05f);
-    public int HealthScaling(int level) => (int)StatScaling(5f, level, 200f);
-    public float SpeedScaling(int level) => StatScaling(0.01f, level, 1f);
+    public int HealthScaling(int level) => (int)StatScaling(5f, level, 100f);
+    public float SpeedScaling(int level) => StatScaling(0.005f, level, 0.3f);
 
     private float StatScaling(float scale, int level, float baseVal) => scale * level + baseVal;
 
