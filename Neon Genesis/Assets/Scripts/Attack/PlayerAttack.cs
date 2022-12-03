@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour, Observer
 {
     Animator sword;
     private int playerHealth = 100;
@@ -19,6 +19,9 @@ public class PlayerAttack : MonoBehaviour
     public float dvalue;
     private float hundred;
 
+    private PlayerStats m_Stats;
+    private int m_CurrentMaxHealth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class PlayerAttack : MonoBehaviour
         hitSound = GetComponent<AudioSource>();
         maxStamina = stamina;
         staminahBar.maxValue = maxStamina;
+        m_Stats = GetComponent<PlayerStats>();
+        playerHealth = m_CurrentMaxHealth = m_Stats.MaxHealth;
     }
 
     // Update is called once per frame
@@ -151,5 +156,11 @@ public class PlayerAttack : MonoBehaviour
             //game over
             Debug.Log("PLAYER DEAD");
         }
+    }
+
+    public void SubjectUpdate()
+    {
+        playerHealth += m_Stats.MaxHealth - m_CurrentMaxHealth;
+        m_CurrentMaxHealth = m_Stats.MaxHealth;
     }
 }

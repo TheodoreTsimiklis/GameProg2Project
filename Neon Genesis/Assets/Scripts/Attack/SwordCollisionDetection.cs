@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class SwordCollisionDetection : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject m_Player;
+    private PlayerStats m_PlayerStats;
     public PlayerAttack pl;
     float damageDone;
+
+    void Awake()
+    {
+        m_PlayerStats = m_Player.GetComponent<PlayerStats>();
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         //get the enemys information
@@ -30,17 +39,15 @@ public class SwordCollisionDetection : MonoBehaviour
 
     int doDamage()
     {
-        if (Random.Range(0, 5) == 4)
+        var multiplier = 1f;
+        if (Random.value < m_PlayerStats.CritChance)
         {
-            //1/4 chance of dealing crit hit
-            damageDone = 10;
-        }
-        else
-        {
-            damageDone = 20;
+            multiplier = 1.5f;
         }
 
-        return (int)damageDone;
+        int damageTaken = (int) (m_PlayerStats.AttackDamage * multiplier);
+        Debug.Log(damageTaken);
+        return damageTaken;
     }
 
 
