@@ -140,3 +140,8 @@ public class WaveSpawner : MonoBehaviour
         Instantiate(_enemy, new Vector3(xPos, 17, yPos), Quaternion.identity);
     }
 }
+
+
+//Here is the citation of the sites used to impliment this part
+// https://www.youtube.com/watch?v=Vrld13ypX_I&t=15s
+// https://www.youtube.com/watch?v=q0SBfDFn2Bs&t=471s
